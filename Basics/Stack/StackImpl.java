@@ -8,6 +8,7 @@ public class StackImpl {
         stacker.push(10);
         stacker.push(20);
         stacker.push(30);
+        stacker.push(40);
 
         //display stack contents
         stacker.display();
@@ -16,6 +17,7 @@ public class StackImpl {
         System.out.println("The top element is: " + stacker.peek());
 
         //pop elements from stack
+        System.out.println("popped element is: " + stacker.pop());
         System.out.println("popped element is: " + stacker.pop());
         System.out.println("popped element is: " + stacker.pop());
 
