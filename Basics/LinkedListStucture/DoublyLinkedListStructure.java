@@ -1,11 +1,14 @@
 package Basics.LinkedListStucture;
 
+import java.util.logging.Logger;
+
 public class DoublyLinkedListStructure {
+    private static final Logger logger = Logger.getLogger(DoublyLinkedListStructure.class.getName());
     DoubleNode head;
 
     public DoublyLinkedListStructure() {
         this.head = null;
-    } 
+    }
 
     // insert at the beginning
     public void insertAtHead(int data) {
@@ -16,7 +19,7 @@ public class DoublyLinkedListStructure {
         }
         head = newNode;
     }
-   
+
 
     // Add a new node to the end of the list
     public void insertAtEnd(int data) {
@@ -45,15 +48,13 @@ public class DoublyLinkedListStructure {
         DoubleNode current = head;
         for (int i = 0; i < position - 1; i++) {
             if (current == null) {
-                System.out.println("Position out of bounds");
-                return;
+                throw new IndexOutOfBoundsException("Position out of bounds");
             }
             current = current.next;
         }
 
         if (current == null) {
-            System.out.println("Position out of bounds");
-            return;
+            throw new IndexOutOfBoundsException("Position out of bounds");
         }
 
         newNode.next = current.next;
@@ -96,8 +97,7 @@ public class DoublyLinkedListStructure {
     // Delete a node at a specific position
     public void deleteAtPosition(int position) {
         if (head == null) {
-            System.out.println("List is empty");
-            return;
+            throw new IllegalStateException("List is empty");
         }
 
         if (position == 0) {
@@ -110,9 +110,8 @@ public class DoublyLinkedListStructure {
 
         DoubleNode current = head;
         for (int i = 0; i < position - 1; i++) {
-            if (current.next == null) { 
-                System.out.println("Position out of bounds");
-                return;
+            if (current.next == null) {
+                throw new IndexOutOfBoundsException("Position out of bounds");
             }
             current = current.next;
         }
@@ -122,7 +121,7 @@ public class DoublyLinkedListStructure {
                 current.next.prev = current;
             }
         } else {
-            System.out.println("Position out of bounds");
+            throw new IndexOutOfBoundsException("Position out of bounds");
         }
     }
 
@@ -139,7 +138,7 @@ public class DoublyLinkedListStructure {
             current = current.next;
         }
         current.prev.next = null;
-    }   
+    }
 
     // search for a value in the list
     public boolean search(int key) {
@@ -155,28 +154,30 @@ public class DoublyLinkedListStructure {
 
     // print forward
     public void printListForward() {
+        StringBuilder sb = new StringBuilder();
         DoubleNode current = head;
         while (current != null) {
-            System.out.print(current.data + " ");
+            sb.append(current.data).append(" ");
             current = current.next;
         }
-        System.out.println();
+        logger.info(sb.toString().trim());
     }
 
     // print backward
     public void printListBackward() {
-        DoubleNode current = head;
-        if (current == null) {
-            System.out.println("List is empty");
+        if (head == null) {
+            logger.info("List is empty");
             return;
         }
+        DoubleNode current = head;
         while (current.next != null) {
             current = current.next;
         }
+        StringBuilder sb = new StringBuilder();
         while (current != null) {
-            System.out.print(current.data + " ");
+            sb.append(current.data).append(" ");
             current = current.prev;
         }
-        System.out.println();
+        logger.info(sb.toString().trim());
     }
 }

@@ -1,6 +1,9 @@
 package Basics.LinkedListStucture;
 
+import java.util.logging.Logger;
+
 public class LinkedListStructure {
+    private static final Logger logger = Logger.getLogger(LinkedListStructure.class.getName());
     Node head;
 
     public LinkedListStructure() {
@@ -39,15 +42,13 @@ public class LinkedListStructure {
         Node current = head;
         for (int i = 0; i < position - 1; i++) {
             if (current == null) {
-                System.out.println("Position out of bounds");
-                return;
+                throw new IndexOutOfBoundsException("Position out of bounds");
             }
             current = current.next;
         }
 
         if (current == null) {
-            System.out.println("Position out of bounds");
-            return;
+            throw new IndexOutOfBoundsException("Position out of bounds");
         }
 
         newNode.next = current.next;
@@ -78,8 +79,7 @@ public class LinkedListStructure {
     // Delete a node at a specific position
     public void deleteAtPosition(int position) {
         if (head == null) {
-            System.out.println("List is empty");
-            return;
+            throw new IllegalStateException("List is empty");
         }
 
         if (position == 0) {
@@ -90,15 +90,13 @@ public class LinkedListStructure {
         Node current = head;
         for (int i = 0; i < position - 1; i++) {
             if (current.next == null) {
-                System.out.println("Position out of bounds");
-                return;
+                throw new IndexOutOfBoundsException("Position out of bounds");
             }
             current = current.next;
         }
 
         if (current.next == null) {
-            System.out.println("Position out of bounds");
-            return;
+            throw new IndexOutOfBoundsException("Position out of bounds");
         }
 
         current.next = current.next.next;
@@ -128,6 +126,6 @@ public class LinkedListStructure {
         if (sb.length() > 0) {
             sb.setLength(sb.length() - separator.length());
         }
-        System.out.println(sb.toString());
+        logger.info(sb.toString());
     }
 }
