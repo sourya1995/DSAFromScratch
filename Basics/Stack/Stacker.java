@@ -17,7 +17,7 @@ class Stacker {
 
     public void push(int value) {
         if (top == capacity - 1) {
-            logger.warning("Stack Overflow");
+            throw new IllegalStateException("Stack Overflow");
         } else {
             stack[++top] = value;
             if (logger.isLoggable(java.util.logging.Level.INFO)) {
@@ -28,8 +28,7 @@ class Stacker {
 
     public int pop() {
         if (top == -1) {
-            logger.warning("Stack Underflow");
-            return -1;
+            throw new IllegalStateException("Stack Underflow");
         }
         return stack[top--];
 
@@ -37,8 +36,7 @@ class Stacker {
 
     public int peek() {
         if (isEmpty()) {
-            logger.warning("Stack is empty");
-            return -1;
+            throw new IllegalStateException("Stack is empty");
         }
         return stack[top];
     }
