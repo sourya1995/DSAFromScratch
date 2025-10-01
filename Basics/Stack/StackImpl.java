@@ -1,30 +1,20 @@
 package Basics.Stack;
 
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
 public class StackImpl {
+    private static final Logger logger = Logger.getLogger(StackImpl.class.getName());
+
     public static void main(String[] args) {
-        Stacker stacker = new Stacker(5);
-
-        //pushing some elements
-        stacker.push(10);
-        stacker.push(20);
-        stacker.push(30);
-        stacker.push(40);
-
-        //display stack contents
-        stacker.display();
-
-        //peek the top element
-        System.out.println("The top element is: " + stacker.peek());
-
-        //pop elements from stack
-        System.out.println("popped element is: " + stacker.pop());
-        System.out.println("popped element is: " + stacker.pop());
-        System.out.println("popped element is: " + stacker.pop());
-
-        //display stack contents
-        stacker.display();
-
-        //Check if stack is empty
-        System.out.println("Stack is empty: " + stacker.isEmpty());
+        Stacker stack = new Stacker(5);
+        logger.log(Level.INFO, "Top element is: {0}", stack.peek());
+        stack.push(20);
+        stack.push(30);
+        stack.printStack();
+        logger.log(Level.INFO,"Top element is: {0}", stack.peek());
+        logger.log(Level.INFO, "Popped element is: {0}", stack.pop());
+        stack.printStack();
+        logger.log(Level.INFO, "Is stack empty? {0}", stack.isEmpty());
     }
 }

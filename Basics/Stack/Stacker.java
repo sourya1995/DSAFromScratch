@@ -1,65 +1,62 @@
 package Basics.Stack;
 
-class Stacker {
-  int[] stack;
-  int top;
-  int capacity;
+import java.util.logging.Logger;
 
-    //constructor
+class Stacker {
+    private static final Logger logger = Logger.getLogger(Stacker.class.getName());
+    int[] stack;
+    int top;
+    int capacity;
+
     public Stacker(int size) {
         stack = new int[size];
         capacity = size;
         top = -1;
+
     }
 
-    //push
-    void push(int data){
-        if(top == capacity - 1){
-            System.out.println("Stack Overflow");
-            return;
+    public void push(int value) {
+        if (top == capacity - 1) {
+            logger.warning("Stack Overflow");
+        } else {
+            stack[++top] = value;
+            if (logger.isLoggable(java.util.logging.Level.INFO)) {
+                logger.info(String.format("%d pushed to stack", value));
+            }
         }
-
-        stack[++top] = data;
-        System.out.println(data + " pushed to stack");
     }
 
-    //pop
-    int pop(){
-        if(isEmpty()) {
-            System.out.println("Stack underflow");
+    public int pop() {
+        if (top == -1) {
+            logger.warning("Stack Underflow");
             return -1;
         }
         return stack[top--];
+
     }
 
-    //peek
-    int peek(){
-        if(isEmpty()){
-            System.out.println("Stack is empty");
+    public int peek() {
+        if (isEmpty()) {
+            logger.warning("Stack is empty");
             return -1;
         }
-
         return stack[top];
     }
 
-    //isEmpty()
-    boolean isEmpty(){
+    public boolean isEmpty() {
         return top == -1;
     }
 
-    //display stack contents
-    void display(){
-        if(isEmpty()){
-            System.out.println("Stack is empty");
-            return;
+    public void printStack() {
+        if (isEmpty()) {
+            logger.info("Stack is empty");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            for (int i = top; i >= 0; i--) {
+                sb.append(stack[i]).append(" ");
+            }
+            logger.info(() -> "Stack elements: " + sb.toString().trim());
         }
-
-        for (int i = top; i >= 0 ; i--) {
-            System.out.print(stack[i] + " ");
-
-        }
-        System.out.println();
     }
-
 
 }
