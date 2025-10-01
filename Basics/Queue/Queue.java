@@ -13,14 +13,14 @@ public class Queue {
 
     private static final Logger logger = Logger.getLogger(Queue.class.getName());
 
-    int[] queue;
+    int[] queueArray;
     int front;
     int rear;
     int capacity;
     int size;
 
     public Queue(int size) {
-        queue = new int[size];
+        queueArray = new int[size];
         capacity = size;
         front = 0;
         rear = -1;
@@ -31,7 +31,7 @@ public class Queue {
             throw new IllegalStateException("Queue Overflow");
         } else {
             rear = (rear + 1) % capacity;
-            queue[rear] = value;
+            queueArray[rear] = value;
             size++;
             logger.info(() -> value + " inserted to queue");
         }
@@ -42,7 +42,7 @@ public class Queue {
             logger.warning("Queue Underflow");
             return -1;
         } else {
-            int element = queue[front];
+            int element = queueArray[front];
             front = (front + 1) % capacity;
             size--;
             logger.info(() -> element + " removed from queue");
@@ -55,7 +55,7 @@ public class Queue {
             logger.info("Queue is empty");
             return -1;
         }
-        return queue[front];
+        return queueArray[front];
     }
 
     public boolean isEmpty() {
@@ -68,7 +68,7 @@ public class Queue {
         } else {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < size; i++) {
-                sb.append(queue[(front + i) % capacity]).append(" ");
+                sb.append(queueArray[(front + i) % capacity]).append(" ");
             }
             logger.info(() -> "Queue elements: " + sb.toString().trim());
         }
