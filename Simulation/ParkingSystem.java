@@ -1,5 +1,7 @@
 package Simulation;
 
+/* Leetcode 1603 - design Parking System */
+
 public class ParkingSystem {
 
     private int[] slots;
