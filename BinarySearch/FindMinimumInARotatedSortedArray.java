@@ -1,6 +1,6 @@
 package BinarySearch;
 
-/* Leetcode 153 - Find Minimum in Rotated Sorted Array */ *
+/* Leetcode 153 - Find Minimum in Rotated Sorted Array */ 
 
 public class FindMinimumInARotatedSortedArray {
     public int findMin(int[] nums) {
