@@ -1,5 +1,6 @@
 package BinarySearch;
 
+/* Leetcode 852 - Peak Index of Mountain Array */
 public class PeakIndexOfMountainArray {
     public int peakIndexInMountainArray(int[] arr){
         int left = 0;
