@@ -30,23 +30,21 @@ Assign [2, 3], [5], and [7] separately to workers. The minimum time is 7.
 public class Newspapers {
     private static boolean canFinish(int[] newspaperReadTimes, int coworkers, int limit) {
         int currentTime = 0; // time taken by current worker
-        int requiredWorkers = 0; // worker pool
+        int requiredWorkers = 1; // worker pool
 
         for (int readTime : newspaperReadTimes) {
             if (currentTime + readTime > limit) {
-                currentTime = 0;
+
                 requiredWorkers++; // need one more worker
-                 // assign current newspaper to new worker
+                currentTime = readTime; // assign current newspaper to new worker
+                if (requiredWorkers > coworkers)
+                    return false; // not feasible
+            } else {
+                currentTime += readTime; // assign newspaper to current worker
             }
-                currentTime += readTime;
-            
 
         }
-
-        if(currentTime != 0){
-            requiredWorkers++;
-        }
-        return requiredWorkers <= coworkers; // feasible
+        return true; // feasible within the limit
     }
 
     public static int minTimeToRead(int[] times, int coworkers) {
