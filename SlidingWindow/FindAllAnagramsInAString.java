@@ -1,4 +1,4 @@
-package SlidingWIndow;
+package SlidingWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;

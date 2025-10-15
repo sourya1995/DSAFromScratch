@@ -1,4 +1,4 @@
-package SlidingWIndow;
+package SlidingWindow;
 
 /* Leetcode 643 - Maximum Average Subarray I */
 public class MaxAverageSubarray {
