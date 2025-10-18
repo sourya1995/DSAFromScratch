@@ -2,7 +2,7 @@ package PrefixSum;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/* Leetcode 325 - Maximum Size Subarray Sum Equals K */
 public class MaximumSizeSubarraySumEqualsK {
     public int maxSubArraySum(int[] nums, int k) {
         Map<Integer, Integer> prefixSumToPosition = new HashMap<>();
