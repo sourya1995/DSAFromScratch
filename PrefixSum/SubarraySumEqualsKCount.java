@@ -3,6 +3,7 @@ package PrefixSum;
 import java.util.HashMap;
 import java.util.List;
 
+/* Leetcode 560 - Subarray Sum Equals K */
 public class SubarraySumEqualsKCount {
     public static int subarraySumTotal(List<Integer> nums, int targetSum) {
         HashMap<Integer, Integer> prefixSumToCount = new HashMap<>();
