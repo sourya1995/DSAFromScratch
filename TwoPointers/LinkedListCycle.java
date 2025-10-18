@@ -1,4 +1,4 @@
-package PrefixSum;
+package TwoPointers;
 
 public class LinkedListCycle {
     public boolean hasCycle(ListNode head) {
