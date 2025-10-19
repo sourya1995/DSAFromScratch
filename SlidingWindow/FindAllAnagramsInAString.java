@@ -17,7 +17,7 @@ public class FindAllAnagramsInAString {
         int windowCount[] = new int[26];
 
         for(int i = 0; i < patternLength; ++i) {
-            patternCount[p.charAt(i) - 'a']++;
+            patternCount[p.charAt(i) - 'a']++; 
             windowCount[s.charAt(i) - 'a']++;
         }
 
