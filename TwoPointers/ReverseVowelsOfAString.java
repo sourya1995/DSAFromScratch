@@ -1,34 +1,43 @@
 package TwoPointers;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /* Leetcode 345 - Reverse Vowels of a String */
 public class ReverseVowelsOfAString {
     public String reverseVowels(String s) {
-        char[] charArray = s.toCharArray();
-        int left = 0;
-        int right = charArray.length - 1;
-
+        Set<Character> vowels = new HashSet<>();
+        vowels.add('a');
+        vowels.add('e');
+        vowels.add('i');
+        vowels.add('o');
+        vowels.add('u');
+        vowels.add('A');
+        vowels.add('E');
+        vowels.add('I');
+        vowels.add('O');
+        vowels.add('U');
+        StringBuilder sb = new StringBuilder(s);
+        int left = 0, right = s.length() - 1;
         while (left < right) {
-            while (left < right && !isVowel(charArray[left])) {
+            if (!vowels.contains(sb.charAt(left))) {
                 left++;
-            }
-            while (left < right && !isVowel(charArray[right])) {
+            } else if (!vowels.contains(sb.charAt(right))) {
+                right--;
+            } else {
+                swap(sb, left, right);
+                left++;
                 right--;
             }
 
-            //swap vowels
-            char temp = charArray[left];
-            charArray[left] = charArray[right];
-            charArray[right] = temp;
-
-            left++;
-            right--;
         }
 
-        return new String(charArray);
+        return sb.toString();
     }
 
-    private boolean isVowel(char c) {
-        c = Character.toLowerCase(c);
-        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    private void swap(StringBuilder sb, int i, int j) {
+        char temp = sb.charAt(i);
+        sb.setCharAt(i, sb.charAt(j));
+        sb.setCharAt(j, temp);
     }
 }
