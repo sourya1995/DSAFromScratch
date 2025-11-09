@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
 
-import Basics.LinkedListStucture.Node;
 
-public class PreOrderTraversal {
+
+public class PostOrderTraversal {
     public static class Node<T> {
         public T data;
         public Node<T> left;
@@ -23,16 +23,6 @@ public class PreOrderTraversal {
             this.left = left;
             this.right = right;
         }
-    
-    }
-
-    public static void preOrderTraversal(Node<Integer> root) {
-        if (root == null) {
-            return;
-        }
-        System.out.print(root.data + " ");
-        preOrderTraversal(root.left);
-        preOrderTraversal(root.right);
     }
 
     public static <T> Node<T> buildTree(Iterator<String> iter, Function<String, T> f){
@@ -48,10 +38,19 @@ public class PreOrderTraversal {
         return s.isEmpty()? List.of() : Arrays.asList(s.split(" "));
     }
 
+    public static void postOrderTraversal(Node<Integer> root) {
+        if (root == null) {
+            return;
+        }
+        postOrderTraversal(root.left);
+        postOrderTraversal(root.right);
+        System.out.print(root.data + " ");
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Node<Integer> root = buildTree(splitWords(scanner.nextLine()).iterator(), Integer::parseInt);
         scanner.close();
-        preOrderTraversal(root);
+        postOrderTraversal(root);
     }
 }
